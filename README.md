@@ -5,6 +5,7 @@
 ## ✨ 特色功能
 
 - 🎯 **完全填滿佈局** - 圖片完全拉伸，無上下左右空白
+- 🎲 **隨機熱門股** - 支援顯示市場熱門股票排行
 - 📱 **響應式網格** - 自動適配 1-6 個股票的最佳佈局
 - ⚡ **並發下載** - 智能限流，最多同時 6 個請求
 - 🔄 **自動重試** - 網路失敗自動重試，單個失敗不影響整體
@@ -48,10 +49,18 @@
 
 在腳本開頭的 `CONFIG` 區域進行設定：
 
-```javascript
 const CONFIG = {
-  // 股票代碼列表（1-6 個）
+  // 資料來源: 'custom' (自訂) 或 'rank' (熱門排行)
+  dataSource: 'custom', 
+
+  // 股票代碼列表（1-6 個，僅在 custom 模式使用）
   stockSymbols: ['TSLA', 'AAPL', 'GOOGL', 'MSFT', 'AMZN', 'NVDA'],
+  
+  // 熱門排行 API（僅在 rank 模式使用）
+  rankApiUrl: 'https://m-gl.lbkrs.com/...', // (完整 URL 省略)
+  
+  // 排行榜顯示數量
+  rankLimit: 6,
   
   // 網格間距（像素）
   gridSpacing: 2,
@@ -83,6 +92,12 @@ stockSymbols: ['AAPL', 'MSFT', 'GOOGL', 'AMZN']
 ### 追蹤 AI 概念股
 ```javascript
 stockSymbols: ['NVDA', 'AMD', 'INTC', 'AVGO', 'QCOM', 'TSM']
+```
+
+### 顯示熱門排行 (隨機)
+```javascript
+dataSource: 'rank',
+rankLimit: 6  // 每次隨機顯示 6 個熱門股票
 ```
 
 ### 調整外觀
